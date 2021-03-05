@@ -1,0 +1,6 @@
+bind-addr: ""
+port: "9090"
+log-level: "debug"
+database-url: "login:password@tcp(10.2.1.20:3306)/billing?timeout=3s"
+session-key: "some-key"
+cookie-age: 1800

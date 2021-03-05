@@ -1,0 +1,2 @@
+curl -sSl -D - -POST http://localhost:9090/login -H "Content-Type: application/json" -d '{"login":"0962964374","password":"ravvar5"}'
+curl -sSl -D - http://localhost:9090/private/whoami --cookie hitline_billing_session=MTYxNDUzODk5M3xEdi1CQkFFQ180SUFBUkFCRUFBQUlmLUNBQUVHYzNSeWFXNW5EQWtBQjNWelpYSmZhV1FFZFdsdWRBWUVBUDRMdXc9PXxBiNRLSYamE0ZoIOitPKK6C3pYNAJvbdMrMbLWTG9oPg== -H "Origin: google.com"billing_session=MTYxNDUzODk5M3xEdi1CQkFFQ180SUFBUkFCRUFBQUlmLUNBQUVHYzNSeWFXNW5EQWtBQjNWelpYSmZhV1FFZFdsdWRBWUVBUDRMdXc9PXxBiNRLSYamE0ZoIOitPKK6C3pYNAJvbdMrMbLWTG9oPg=

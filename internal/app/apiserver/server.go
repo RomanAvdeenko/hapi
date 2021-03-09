@@ -67,7 +67,7 @@ func (s *server) configureRouter() {
 	s.router.HandleFunc("/", s.handleRoot())
 	s.router.HandleFunc("/status", s.handleStatus())
 	s.router.HandleFunc("/login", s.handleSessionCreate()).Methods(http.MethodPost)
-	s.router.HandleFunc("/user/{login:"+model.LoginRegexp+"}", s.handleUserByLogin()).Methods(http.MethodGet)
+	s.router.HandleFunc("/user", s.handleUser()).Methods(http.MethodGet)
 
 	private := s.router.PathPrefix("/private").Subrouter()
 	private.Use(s.authenticateUser, s.checkAccess)

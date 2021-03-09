@@ -36,12 +36,10 @@ func (s *server) handleSessionCreate() http.HandlerFunc {
 			return
 		}
 		// Validate
-
 		if err := validation.ValidateStruct(req, validation.Field(&req.Login, validation.Match(model.LoginRE))); err != nil {
 			s.error(w, r, http.StatusUnauthorized, errValidation)
 			return
 		}
-
 		// Try to find user in DB
 		u, err := s.store.User().FindByLogin(req.Login)
 		if err != nil || !u.ComparePassword(req.Password) {
@@ -171,5 +169,32 @@ func (s *server) handleUserPackageByUserID() http.HandlerFunc {
 			return
 		}
 		s.respond(w, r, http.StatusOK, res)
+	}
+}
+
+// handleUser() gets user based on session information
+func (s *server) handleUser() http.HandlerFunc {
+	return func(rw http.ResponseWriter, r *http.Request) {
+		session, err := s.sessionsStore.Get(r, sessionName)
+		if err != nil {
+			s.error(rw, r, http.StatusInternalServerError, err)
+			return
+		}
+
+		userID, ok := session.Values[sessionKey]
+
+		if !ok {
+			s.error(rw, r, http.StatusUnauthorized, errNotAuthenticated)
+			return
+		}
+
+		user, err := s.store.User().FindByID(userID.(uint))
+
+		if err != nil {
+			s.error(rw, r, http.StatusUnauthorized, errNotAuthenticated)
+			return
+		}
+
+		s.respond(rw, r, http.StatusOK, user)
 	}
 }

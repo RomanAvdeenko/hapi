@@ -30,7 +30,7 @@ func (s *server) logMiddleware(next http.Handler) http.Handler {
 
 			next.ServeHTTP(rw, r)
 
-			s.logger.Debugf("%v %v %v <%v> (%s)\n", r.Context().Value(ctxKeyUUID), r.Method, r.RequestURI, rw.statusCode, time.Since(start))
+			s.logger.Debugf("%v %v %v %v <%v> (%s)\n", r.Context().Value(ctxKeyUUID), r.RemoteAddr, r.Method, r.RequestURI, rw.statusCode, time.Since(start))
 		})
 }
 

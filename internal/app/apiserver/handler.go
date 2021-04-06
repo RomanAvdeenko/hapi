@@ -87,7 +87,7 @@ func (s *server) handleUserByLogin() http.HandlerFunc {
 
 		if err != nil {
 			//fmt.Println("Err: ", err)
-			s.respond(w, r, http.StatusOK, map[string]string{"error": errNotFound.Error()})
+			s.respond(w, r, http.StatusNotFound, map[string]string{"error": errNotFound.Error()})
 			return
 		}
 		s.respond(w, r, http.StatusOK, u)
@@ -112,7 +112,7 @@ func (s *server) handleUserByID() http.HandlerFunc {
 		u, err := s.store.User().FindByID(uint(id))
 
 		if err != nil {
-			s.respond(w, r, http.StatusOK, map[string]string{"error": errNotFound.Error()})
+			s.respond(w, r, http.StatusNotFound, map[string]string{"error": errNotFound.Error()})
 			return
 		}
 		s.respond(w, r, http.StatusOK, u)

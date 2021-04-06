@@ -55,10 +55,10 @@ func (s *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 func (s *server) configureRouter() {
 	// Debug not found handler
-	s.router.NotFoundHandler = http.HandlerFunc((func(w http.ResponseWriter, r *http.Request) {
-		s.logger.Debugf("Not found: %v %v\n", r.Method, r.RequestURI)
-		w.WriteHeader(http.StatusNotFound)
-	}))
+	// s.router.NotFoundHandler = http.HandlerFunc((func(w http.ResponseWriter, r *http.Request) {
+	// 	s.logger.Debugf("Not found: %v %v\n", r.Method, r.RequestURI)
+	// 	w.WriteHeader(http.StatusNotFound)
+	// }))
 
 	s.router.Use(s.setRequestID)
 	s.router.Use(handlers.CORS(handlers.AllowedOrigins([]string{"*"})))

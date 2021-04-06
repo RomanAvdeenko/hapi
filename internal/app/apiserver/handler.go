@@ -66,8 +66,8 @@ func (s *server) handleSessionCreate() http.HandlerFunc {
 
 func (s *server) whoAmI() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		s.respond(w, r, http.StatusOK, r.Context().Value(ctxKeyUser).(*model.User))
-		//s.respond(w, r, http.StatusOK, r.Context().Value(ctxKeyUserID).(uint))
+		u := r.Context().Value(ctxKeyUser).(*model.User)
+		s.respond(w, r, http.StatusOK, u.Login)
 	}
 }
 

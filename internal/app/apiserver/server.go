@@ -16,13 +16,14 @@ const (
 	logFile     = "./log"
 	sessionName = "hitline_billing_session"
 	sessionKey  = "user_id"
-
-	ctxKeyUser ctxKey = iota
-	ctxKeyUserID
-	ctxKeyUUID
 )
 
 type ctxKey uint8
+
+const (
+	ctxKeyUser ctxKey = iota
+	ctxKeyUUID
+)
 
 type server struct {
 	router        *mux.Router

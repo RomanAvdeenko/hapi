@@ -76,7 +76,9 @@ func (s *server) checkAccess(next http.Handler) http.Handler {
 	return http.HandlerFunc(
 		func(w http.ResponseWriter, r *http.Request) {
 			u := r.Context().Value(ctxKeyUser).(*model.User)
-			if u.Privileges != 2 {
+			if !u.Enabled ||
+				!(u.Privileges == 2 ||
+					u.Privileges == 7) {
 				s.error(w, r, http.StatusForbidden, errAccessDeny)
 				return
 			}

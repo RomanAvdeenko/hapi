@@ -5,11 +5,6 @@ import (
 	"testing"
 )
 
-const (
-	LoginRegexp = `[a-zA-z0-9]{5,}`
-	IDRegexp    = `[0-9]{1,}`
-)
-
 var (
 	LoginRE = regexp.MustCompile(LoginRegexp)
 	IDRE    = regexp.MustCompile(IDRegexp)
